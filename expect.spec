@@ -6,7 +6,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 9
+Release:	%mkrel 10
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
@@ -18,6 +18,8 @@ Patch18:	expect-5.32.2-setpgrp.patch
 Patch19:	expect-5.32-libdir.patch
 Patch20:	expect-5.43.0.configure.patch
 Patch21:	expect-5.43-soname.diff
+# from fedora core
+Patch22:	expect-5.43.0-tcl8.5.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
 Requires:	tcl
@@ -69,6 +71,7 @@ This package contains development files for %{name}.
 %patch19 -p1 -b .libdir
 %patch20
 %patch21 -p1
+%patch22 -p1 -b .tcl8.5
 
 %build
 autoconf-2.13
