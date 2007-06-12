@@ -22,6 +22,7 @@ Patch21:	expect-5.43-soname.diff
 Patch22:	expect-5.43.0-tcl8.5.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
+BuildRequires:	libxscrnsaver-devel
 Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
