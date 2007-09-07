@@ -6,7 +6,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 10
+Release:	%mkrel 11
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
