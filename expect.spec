@@ -75,7 +75,7 @@ This package contains development files for %{name}.
 %patch22 -p1 -b .tcl8.5
 
 %build
-autoconf-2.13
+autoreconf
 
 for f in config.guess config.sub ; do
         test -f /usr/share/libtool/$f || continue
