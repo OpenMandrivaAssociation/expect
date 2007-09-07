@@ -23,6 +23,7 @@ Patch22:	expect-5.43.0-tcl8.5.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
 BuildRequires:	libxscrnsaver-devel
+BuildRequires:	autoconf2.1
 Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
@@ -75,7 +76,7 @@ This package contains development files for %{name}.
 %patch22 -p1 -b .tcl8.5
 
 %build
-autoreconf
+autoconf-2.13
 
 for f in config.guess config.sub ; do
         test -f /usr/share/libtool/$f || continue
