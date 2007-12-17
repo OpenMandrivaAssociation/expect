@@ -27,7 +27,6 @@ BuildRequires:	autoconf2.1
 Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
-Buildroot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Expect is a tcl extension for automating interactive applications such
