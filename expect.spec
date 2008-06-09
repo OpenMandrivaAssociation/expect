@@ -122,9 +122,13 @@ rm -f %{buildroot}%{_libdir}/%{name}%{major}/*.a
 # (fc) make sure .so files are writable by root
 chmod 755 %{buildroot}%{_libdir}/*.so
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %clean
 rm -rf %{buildroot}
