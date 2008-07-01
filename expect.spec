@@ -6,7 +6,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		%{name}
 Version:	%{version}
-Release:	%mkrel 13
+Release:	%mkrel 14
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
@@ -62,6 +62,22 @@ Provides:	lib%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description -n	%{libname}-devel
 This package contains development files for %{name}.
+
+%package	examples
+Summary:	Example scripts for %{name}
+Group:		System/Libraries
+
+%description	examples
+This package contains example scripts for Expect.
+
+Expect is a tcl extension for automating interactive applications such
+as telnet, ftp, passwd, fsck, rlogin, tip, etc.  Expect is also useful
+for testing the named applications.  Expect makes it easy for a script
+to control another program and interact with it.
+
+Install the expect package if you'd like to develop scripts which interact
+with interactive applications.  You'll also need to install the tcl
+package.
 
 %prep
 
@@ -151,4 +167,5 @@ rm -rf %{buildroot}
 %{_libdir}/*.so
 %{_libdir}/*.a
 
-
+%files examples
+%doc example/*
