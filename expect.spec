@@ -109,6 +109,9 @@ chmod u+w testsuite/configure
 
 %make
 
+%check
+make test
+
 %install
 rm -rf %{buildroot}
 
