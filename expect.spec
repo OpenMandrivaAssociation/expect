@@ -5,7 +5,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Version:	5.43.0
-Release:	%mkrel 15
+Release:	%mkrel 16
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
@@ -29,6 +29,8 @@ Patch24:	expect-5.43.0-tcl8.6.patch
 # fix log file perms (Fedora)
 Patch25:	expect-fedora-5.43.0-log_file.patch
 Patch26:	expect-5.43.0-tclreq.patch
+# (fc) 5.43.0-16mdv fix format security
+Patch27:	expect-5.43.0-fixformatsecurity.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
 BuildRequires:	libxscrnsaver-devel
@@ -37,6 +39,8 @@ Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
 Buildroot:	%{_tmppath}/%{name}-%{version}
+Provides:	%{_bindir}/expect
+Provides:	%{_bindir}/expectk
 
 %description
 Expect is a tcl extension for automating interactive applications such
@@ -104,6 +108,7 @@ package.
 %patch24 -p1 -b .tcl86
 %patch25 -p1 -b .log
 %patch26 -p1 -b .tclreq
+%patch27 -p1 -b .fixformatsecurity
 
 %build
 autoconf-2.13
