@@ -5,7 +5,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Version:	5.43.0
-Release:	%mkrel 16
+Release:	%mkrel 17
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
