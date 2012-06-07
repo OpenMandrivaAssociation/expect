@@ -1,36 +1,20 @@
-%define major		5.43
+%define major		5.45
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
 
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
-Version:	5.43.0
-Release:	%mkrel 21
+Version:	5.45
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
-Source:		http://expect.nist.gov/src/%{name}-%{version}.tar.bz2
+Source:		http://expect.nist.gov/src/%{name}%{version}.tar.gz
+Patch0:		expect-fedora-5.43.0-pkgpath.patch
+Patch1:		expect-fedora-5.45-match-gt-numchars-segfault.patch
 Patch10:	expect-fedora-5.32.2-random.patch
-Patch13:	expect-5.32.2-fixcat.patch
-Patch16:	expect-fedora-5.38.0-spawn-43310.patch
-Patch18:	expect-fedora-5.43.0-h-comments.patch
-Patch19:	expect-fedora-5.38.0-lib-spec.patch
-Patch20:	expect-5.43.0.configure.patch
-Patch21:	expect-5.43-soname.diff
-# from fedora core
-Patch22:	expect-fedora-5.43.0-tcl8.5.patch
-# fix up install locations: let expect's 'libdir', the system libdir
-# where the shared libs go, and the tcl dir all be different. also
-# install a properly versioned shared library, and a couple other
-# fixes.
-Patch23:	expect-5.43.0-locations.patch
-# fix for tcl 8.6
-Patch24:	expect-5.43.0-tcl8.6.patch
 # fix log file perms (Fedora)
 Patch25:	expect-fedora-5.43.0-log_file.patch
-Patch26:	expect-5.43.0-tclreq.patch
-# (fc) 5.43.0-16mdv fix format security
-Patch27:	expect-5.43.0-fixformatsecurity.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
 BuildRequires:	pkgconfig(xscrnsaver)
@@ -93,21 +77,11 @@ with interactive applications.  You'll also need to install the tcl
 package.
 
 %prep
-
-%setup -q -n %{name}-%{major}
+%setup -q -n %{name}%{major}
+%patch0 -p1
+%patch1 -p1
 %patch10 -p1 -b .random
-%patch13 -p1 -b .fixcat
-%patch16 -p1 -b .spawn
-%patch18 -p1
-%patch19 -p1 -b .libdir
-%patch20
-%patch21 -p1
-%patch22 -p1 -b .tcl8.5
-%patch23 -p1 -b .location
-%patch24 -p1 -b .tcl86
 %patch25 -p1 -b .log
-%patch26 -p1 -b .tclreq
-%patch27 -p1 -b .fixformatsecurity
 
 %build
 autoconf-2.13
