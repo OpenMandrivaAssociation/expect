@@ -18,7 +18,7 @@ Patch25:	expect-fedora-5.43.0-log_file.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
 BuildRequires:	pkgconfig(xscrnsaver)
-BuildRequires:	autoconf2.1
+BuildRequires:	autoconf
 Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
@@ -84,7 +84,7 @@ package.
 %patch25 -p1 -b .log
 
 %build
-autoconf-2.13
+autoconf
 
 for f in config.guess config.sub ; do
         test -f /usr/share/libtool/$f || continue
