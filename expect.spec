@@ -12,6 +12,7 @@ URL:		http://expect.nist.gov/
 Source:		http://expect.nist.gov/src/%{name}%{version}.tar.gz
 Patch0:		expect-fedora-5.43.0-pkgpath.patch
 Patch1:		expect-fedora-5.45-match-gt-numchars-segfault.patch
+Patch2:		expect-5.45-sfmt.patch
 Patch10:	expect-fedora-5.32.2-random.patch
 # fix log file perms (Fedora)
 Patch25:	expect-fedora-5.43.0-log_file.patch
@@ -78,8 +79,9 @@ package.
 
 %prep
 %setup -q -n %{name}%{major}
-%patch0 -p1
+#patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %patch10 -p1 -b .random
 %patch25 -p1 -b .log
 
@@ -96,8 +98,8 @@ chmod u+w testsuite/configure
 
 %configure \
     --enable-gcc \
-    --enable-shared \
-    --with-tclinclude=$TCL_SRC_DIR
+    --enable-shared
+#    --with-tclinclude=$TCL_SRC_DIR
 
 %make
 
