@@ -5,7 +5,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Version:	5.43.0
-Release:	%mkrel 20
+Release:	%mkrel 21
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
@@ -33,12 +33,11 @@ Patch26:	expect-5.43.0-tclreq.patch
 Patch27:	expect-5.43.0-fixformatsecurity.patch
 BuildRequires:	tcl tcl-devel
 BuildRequires:	tk tk-devel
-BuildRequires:	libxscrnsaver-devel
+BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	autoconf2.1
 Requires:	tcl
 Epoch:		1
 Requires:	%{libname} = %{epoch}:%{version}
-Buildroot:	%{_tmppath}/%{name}-%{version}
 Provides:	%{_bindir}/expect
 Provides:	%{_bindir}/expectk
 
@@ -152,19 +151,10 @@ rm -f %{buildroot}%{_libdir}/%{name}%{major}/*.a
 # (fc) make sure .so files are writable by root
 chmod 755 %{buildroot}%{_libdir}/*.so
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %clean
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc ChangeLog FAQ HISTORY NEWS README
 %{_bindir}/*
 %{_libdir}/%{name}%{major}
@@ -173,11 +163,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/lib*.so.1
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
