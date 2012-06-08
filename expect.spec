@@ -5,14 +5,16 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Version:	5.45
-Release:	%mkrel 1
+Release:	1
+Epoch:		1
 Group:		System/Libraries
 License:	BSD
 URL:		http://expect.nist.gov/
 Source:		http://expect.nist.gov/src/%{name}%{version}.tar.gz
-Patch0:		expect-fedora-5.43.0-pkgpath.patch
+Patch0:		expect-5.45-pkgpath.patch
 Patch1:		expect-fedora-5.45-match-gt-numchars-segfault.patch
 Patch2:		expect-5.45-sfmt.patch
+Patch3:		expect-5.45-soname.patch
 Patch10:	expect-fedora-5.32.2-random.patch
 # fix log file perms (Fedora)
 Patch25:	expect-fedora-5.43.0-log_file.patch
@@ -21,8 +23,7 @@ BuildRequires:	tk tk-devel
 BuildRequires:	pkgconfig(xscrnsaver)
 BuildRequires:	autoconf
 Requires:	tcl
-Epoch:		1
-Requires:	%{libname} = %{epoch}:%{version}
+Requires:	%{libname} = %{EVRD}
 Provides:	%{_bindir}/expect
 Provides:	%{_bindir}/expectk
 
@@ -79,9 +80,10 @@ package.
 
 %prep
 %setup -q -n %{name}%{major}
-#patch0 -p1
+%patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 %patch10 -p1 -b .random
 %patch25 -p1 -b .log
 
@@ -99,7 +101,6 @@ chmod u+w testsuite/configure
 %configure \
     --enable-gcc \
     --enable-shared
-#    --with-tclinclude=$TCL_SRC_DIR
 
 %make
 
@@ -121,19 +122,12 @@ ln -s lib%{name}%{major}.so.1 %{buildroot}%{_libdir}/lib%{name}%{major}.so
 rm -f %{buildroot}%{_bindir}/{cryptdir,decryptdir}
 rm -f %{buildroot}%{_mandir}/man1/{cryptdir,decryptdir}.1*
 
-# cleanup
-rm -f %{buildroot}%{_libdir}/%{name}%{major}/*.a
-
 # (fc) make sure .so files are writable by root
 chmod 755 %{buildroot}%{_libdir}/*.so
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %doc ChangeLog FAQ HISTORY NEWS README
 %{_bindir}/*
-%{_libdir}/%{name}%{major}
 %{tcl_sitearch}/%{name}%{major}
 %{_mandir}/man1/*
 %{_mandir}/man3/*
@@ -144,7 +138,6 @@ rm -rf %{buildroot}
 %files -n %{develname}
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.a
 
 %files examples
 %doc example/*
