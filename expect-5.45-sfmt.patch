@@ -1,0 +1,14 @@
+diff -urN expect5.45/exp_clib.c expect5.45-patched/exp_clib.c
+--- expect5.45/exp_clib.c	2010-09-01 09:20:27.000000000 +1100
++++ expect5.45-patched/exp_clib.c	2012-06-08 01:21:05.181612888 +1100
+@@ -1476,8 +1476,8 @@
+      char *str;
+ {
+   if (exp_is_debugging) {
+-    fprintf(stderr,str);
+-    if (exp_logfile) fprintf(exp_logfile,str);
++    fprintf(stderr,"%s",str);
++    if (exp_logfile) fprintf(exp_logfile,"%s",str);
+   }
+ }
+ 

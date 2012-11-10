@@ -1,0 +1,77 @@
+diff -urN expect5.45/configure.in expect5.45-patched/configure.in
+--- expect5.45/configure.in	2010-08-28 08:51:53.000000000 +1100
++++ expect5.45-patched/configure.in	2012-06-08 18:58:09.888998420 +1100
+@@ -977,6 +977,7 @@
+ AC_SUBST(SETUID)
+ AC_SUBST(SETPGRP_VOID)
+ AC_SUBST(DEFAULT_STTY_ARGS)
++AC_SUBST(TCL_VERSION)
+ # Expect uses these from tclConfig.sh to make the main executable
+ AC_SUBST(TCL_DL_LIBS)
+ AC_SUBST(TCL_CC_SEARCH_FLAGS)
+diff -urN expect5.45/Makefile.in expect5.45-patched/Makefile.in
+--- expect5.45/Makefile.in	2010-10-01 04:14:07.000000000 +1100
++++ expect5.45-patched/Makefile.in	2012-06-08 19:00:19.604997091 +1100
+@@ -121,8 +121,8 @@
+ DESTDIR		=
+ 
+ PKG_DIR		= $(PACKAGE_NAME)$(PACKAGE_VERSION)
+-pkgdatadir	= $(datadir)/$(PKG_DIR)
+-pkglibdir	= $(libdir)/$(PKG_DIR)
++pkgdatadir     = $(datadir)/tcl@TCL_VERSION@/$(PKG_DIR)
++pkglibdir      = $(libdir)/tcl@TCL_VERSION@/$(PKG_DIR)
+ pkgincludedir	= $(includedir)/$(PKG_DIR)
+ 
+ top_builddir	= .
+@@ -263,7 +263,7 @@
+ 	  else true; fi ; \
+ 	done
+ 
+-test: binaries libraries
++test: binaries libraries pkgIndex.tcl-test
+ 	$(TCLSH) `@CYGPATH@ $(srcdir)/tests/all.tcl` $(TESTFLAGS)
+ 
+ shell: binaries libraries
+@@ -331,6 +331,11 @@
+ pkgIndex.tcl-hand:
+ 	(echo 'if {![package vsatisfies [package provide Tcl] @TCL_VERSION@]} {return}' ; \
+ 	 echo 'package ifneeded Expect $(PACKAGE_VERSION) \
++	    [list load [file join $$dir .. .. $(PKG_LIB_FILE).1]]'\
++	) > pkgIndex.tcl
++
++pkgIndex.tcl-test:
++	(echo 'package ifneeded Expect $(PACKAGE_VERSION) \
+ 	    [list load [file join $$dir $(PKG_LIB_FILE)]]'\
+ 	) > pkgIndex.tcl
+ 
+@@ -527,22 +532,22 @@
+ 	@mkdir -p $(DESTDIR)$(pkglibdir)
+ 	@list='$(lib_BINARIES)'; for p in $$list; do \
+ 	  if test -f $$p; then \
+-	    echo " $(INSTALL_PROGRAM) $$p $(DESTDIR)$(pkglibdir)/$$p"; \
+-	    $(INSTALL_PROGRAM) $$p $(DESTDIR)$(pkglibdir)/$$p; \
++	    echo " $(INSTALL_PROGRAM) $$p $(DESTDIR)$(libdir)/$$p"; \
++	    $(INSTALL_PROGRAM) $$p $(DESTDIR)$(libdir)/$$p; \
+ 	    stub=`echo $$p|sed -e "s/.*\(stub\).*/\1/"`; \
+ 	    if test "x$$stub" = "xstub"; then \
+-		echo " $(RANLIB_STUB) $(DESTDIR)$(pkglibdir)/$$p"; \
+-		$(RANLIB_STUB) $(DESTDIR)$(pkglibdir)/$$p; \
++		echo " $(RANLIB_STUB) $(DESTDIR)$(libdir)/$$p"; \
++		$(RANLIB_STUB) $(DESTDIR)$(libdir)/$$p; \
+ 	    else \
+-		echo " $(RANLIB) $(DESTDIR)$(pkglibdir)/$$p"; \
+-		$(RANLIB) $(DESTDIR)$(pkglibdir)/$$p; \
++		echo " $(RANLIB) $(DESTDIR)$(libdir)/$$p"; \
++		$(RANLIB) $(DESTDIR)$(libdir)/$$p; \
+ 	    fi; \
+ 	    ext=`echo $$p|sed -e "s/.*\.//"`; \
+ 	    if test "x$$ext" = "xdll"; then \
+ 		lib=`basename $$p|sed -e 's/.[^.]*$$//'`.lib; \
+ 		if test -f $$lib; then \
+-		    echo " $(INSTALL_DATA) $$lib $(DESTDIR)$(pkglibdir)/$$lib"; \
+-	            $(INSTALL_DATA) $$lib $(DESTDIR)$(pkglibdir)/$$lib; \
++		    echo " $(INSTALL_DATA) $$lib $(DESTDIR)$(libdir)/$$lib"; \
++	            $(INSTALL_DATA) $$lib $(DESTDIR)$(libdir)/$$lib; \
+ 		fi; \
+ 	    fi; \
+ 	  fi; \
