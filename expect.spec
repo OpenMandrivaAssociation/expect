@@ -9,7 +9,7 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Version:	5.45
-Release:	2
+Release:	3
 Epoch:		1
 Group:		System/Libraries
 License:	BSD
