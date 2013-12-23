@@ -23,6 +23,22 @@ Patch3:		expect-5.45-soname.patch
 Patch10:	expect-fedora-5.32.2-random.patch
 # fix log file perms (Fedora)
 Patch25:	expect-fedora-5.43.0-log_file.patch
+# Patch2: fixes minor man page formatting issue
+Patch26:	expect-5.45-man-page.patch
+# Patch4: fixes memory leak when using -re, http://sourceforge.net/p/expect/patches/13/
+Patch28:	expect-5.45-re-memleak.patch
+# Patch5: use vsnprintf instead of vsprintf to avoid buffer overflow
+Patch29:	expect-5.45-exp-log-buf-overflow.patch
+# Patch101: fixes bz674184 - mkpasswd fails randomly
+Patch101:	expect-5.45-mkpasswd-dash.patch
+# Patch102: fixes bz703702 - let user know that telnet is needed for
+# running some examples
+Patch102:	expect-5.45-check-telnet.patch
+# Patch103: use full path to 'su', it's safer
+Patch103:	expect-5.45-passmass-su-full-path.patch
+# Patch104: rhbz 963889, fixes inaccuracy in mkpasswd man page
+Patch104:	expect-5.45-mkpasswd-man.patch
+
 
 BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
@@ -70,6 +86,7 @@ This package contains example scripts for Expect.
 %apply_patches
 
 autoconf
+autoreconf -fiv
 
 for f in config.guess config.sub ; do
 	test -f /usr/share/libtool/$f || continue
@@ -125,4 +142,3 @@ chmod 755 %{buildroot}%{_libdir}/*.so
 
 %files examples
 %doc example/*
-
