@@ -89,8 +89,8 @@ autoconf
 autoreconf -fiv
 
 for f in config.guess config.sub ; do
-	test -f /usr/share/libtool/$f || continue
-	find . -type f -name $f -exec cp /usr/share/libtool/$f \{\} \;
+	test -f /usr/share/libtool/config/$f || continue
+	find . -type f -name $f -exec cp /usr/share/libtool/config/$f \{\} \;
 done
 
 chmod u+w testsuite/configure
