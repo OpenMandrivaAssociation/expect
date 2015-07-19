@@ -11,7 +11,7 @@ Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Epoch:		1
 Version:	5.45
-Release:	11
+Release:	12
 Group:		System/Libraries
 License:	BSD
 Url:		http://expect.sourceforge.net/
