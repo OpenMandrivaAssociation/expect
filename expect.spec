@@ -2,6 +2,7 @@
 %define major	1
 %define libname	%mklibname %{name} %{api} %{major}
 %define devname	%mklibname %{name} -d
+%define _disable_lto %{nil}
 
 %if %{_use_internal_dependency_generator}
 %define __noautoreq '/depot/path/expect|/depot/path/expectk'
