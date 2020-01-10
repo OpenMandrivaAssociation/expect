@@ -84,7 +84,7 @@ This package contains example scripts for Expect.
 
 %prep
 %setup -qn %{name}%{version}
-%apply_patches
+%autopatch -p1
 
 autoconf
 autoreconf -fiv
