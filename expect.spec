@@ -15,7 +15,7 @@ Version:	5.45
 Release:	14
 Group:		System/Libraries
 License:	BSD
-Url:		http://expect.sourceforge.net/
+Url:		https://expect.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/project/expect/Expect/%{version}/%{name}%{version}.tar.gz
 Patch0:		expect-5.45-pkgpath.patch
 Patch1:		expect-fedora-5.45-match-gt-numchars-segfault.patch
