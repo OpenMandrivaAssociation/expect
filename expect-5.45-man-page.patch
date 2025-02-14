@@ -1,6 +1,6 @@
-diff -up expect5.45/example/autoexpect.man.orig expect5.45/example/autoexpect.man
---- expect5.45/example/autoexpect.man.orig	2013-04-04 09:59:35.859419535 +0200
-+++ expect5.45/example/autoexpect.man	2013-04-04 09:59:49.164493755 +0200
+diff -up expect5.45.4/example/autoexpect.man.7~ expect5.45.4/example/autoexpect.man
+--- expect5.45.4/example/autoexpect.man.7~	2018-02-02 20:15:52.000000000 +0100
++++ expect5.45.4/example/autoexpect.man	2025-02-14 13:27:09.874211195 +0100
 @@ -136,7 +136,7 @@ using the date command while running aut
  produce a script that will require editing in order for it to work.
  
@@ -10,9 +10,9 @@ diff -up expect5.45/example/autoexpect.man.orig expect5.45/example/autoexpect.ma
  which is usually the prompt.  This handles the date problem (see
  above) and most others.
  
-diff -up expect5.45/example/tknewsbiff.man.orig expect5.45/example/tknewsbiff.man
---- expect5.45/example/tknewsbiff.man.orig	2013-04-04 10:02:20.900340183 +0200
-+++ expect5.45/example/tknewsbiff.man	2013-04-04 10:02:50.049502783 +0200
+diff -up expect5.45.4/example/tknewsbiff.man.7~ expect5.45.4/example/tknewsbiff.man
+--- expect5.45.4/example/tknewsbiff.man.7~	2018-02-02 20:15:52.000000000 +0100
++++ expect5.45.4/example/tknewsbiff.man	2025-02-14 13:27:09.874286477 +0100
 @@ -177,7 +177,7 @@ The "server" variable names an NNTP news
  The default is "news".  The "server" variable is
  only used if the "active_file" variable is not set.
@@ -22,20 +22,10 @@ diff -up expect5.45/example/tknewsbiff.man.orig expect5.45/example/tknewsbiff.ma
  for a response from the server before giving up.  -1 means wait
  forever or until the server itself times out.  The default is 60
  seconds.
-diff -up expect5.45/expect.man.orig expect5.45/expect.man
---- expect5.45/expect.man.orig	2006-01-25 22:51:28.000000000 +0100
-+++ expect5.45/expect.man	2013-04-04 10:02:08.465270816 +0200
-@@ -173,7 +173,8 @@ way, use the
- .B \-b
- flag.
- (When using Expectk, this option is specified as
--.BR \-buffer .)  Note that stdio-buffering may still take place however this shouldn't cause problems when reading from a fifo or stdin.
-+.BR \-buffer .)
-+Note that stdio-buffering may still take place however this shouldn't cause problems when reading from a fifo or stdin.
- .PP
- If the string "\-" is supplied as a filename, standard input is read instead.
- (Use "./\-" to read from a file actually named "\-".)
-@@ -621,7 +622,7 @@ patterns are specified as with Tcl's
+diff -up expect5.45.4/expect.man.7~ expect5.45.4/expect.man
+--- expect5.45.4/expect.man.7~	2018-02-02 20:15:52.000000000 +0100
++++ expect5.45.4/expect.man	2025-02-14 13:27:09.874478029 +0100
+@@ -623,7 +623,7 @@ patterns are specified as with Tcl's
  command.  (Such patterns are also similar to C-shell regular expressions
  usually referred to as "glob" patterns).  The
  .B \-gl
