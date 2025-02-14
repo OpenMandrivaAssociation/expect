@@ -1187,7 +1187,7 @@ diff -up expect5.45.4/exp_log.c.omv~ expect5.45.4/exp_log.c
      if ((tsdPtr->diagToStderr == 0) && (tsdPtr->diagChannel == 0)) return;
  
 -    fmt = TCL_VARARGS_START(char *,arg1,args);
-+    va_start(arg1, args);
++    va_start(args, arg1);
 +    fmt = va_arg(args, char*);
  
      (void) vsnprintf(bigbuf,sizeof(bigbuf),fmt,args);
@@ -1205,7 +1205,7 @@ diff -up expect5.45.4/exp_log.c.omv~ expect5.45.4/exp_log.c
    int len, rc;
  
 -  fmt = TCL_VARARGS_START(char *,arg1,args);
-+  va_start(arg1, args);
++  va_start(args, arg1);
 +  fmt = va_arg(args, char*);
    len = vsnprintf(bigbuf,sizeof(bigbuf),arg1,args);
   retry:
