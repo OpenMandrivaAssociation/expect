@@ -1,0 +1,13 @@
+diff -up expect5.45.4/configure.in.omv~ expect5.45.4/configure.in
+--- expect5.45.4/configure.in.omv~	2025-02-14 13:30:32.262631741 +0100
++++ expect5.45.4/configure.in	2025-02-14 13:31:52.264669723 +0100
+@@ -738,7 +738,8 @@ if test $mach -eq 0 ; then
+   # pty_termios.c is set up to handle pty_termio.
+   AC_MSG_CHECKING([for struct termio])
+   AC_TRY_RUN([#include <termio.h>
+-  main()
++  #include <stdlib.h>
++  int main(int argc, char **argv)
+   {
+     struct termio tmp;
+     exit(0);

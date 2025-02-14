@@ -1,8 +1,8 @@
 %define api	%{version}
 %define major	1
-%define libname	%mklibname %{name} %{api} %{major}
+%define libname	%mklibname %{name}
 %define devname	%mklibname %{name} -d
-%define _disable_lto %{nil}
+#define _disable_lto %{nil}
 
 %if %{_use_internal_dependency_generator}
 %define __noautoreq '/depot/path/expect|/depot/path/expectk'
@@ -64,7 +64,7 @@ package.
 %package -n	%{libname}
 Summary:	Shared libraries for %{name}
 Group:		System/Libraries
-Obsoletes:	%{_lib}expect5.45 < 1:5.45-4
+Obsoletes:	%{_lib}expect5.45 < 1:%{version}-%{name}
 
 %description -n %{libname}
 This package contains the shared library for %{name}.
