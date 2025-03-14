@@ -20,6 +20,8 @@ Url:		https://expect.sourceforge.net/
 # Upstream is dead-ish, but there seems to be a semi-official fork
 # https://www.tcl3d.org/bawt/download.html
 Source0:	https://www.tcl3d.org/bawt/download/InputLibs/expect-%{version}.7z
+# Just for unpacking the source
+BuildRequires:	7zip
 BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
 BuildRequires:	pkgconfig(xscrnsaver)
