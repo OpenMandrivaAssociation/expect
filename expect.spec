@@ -11,12 +11,15 @@
 Summary:	A tcl extension for simplifying program-script interaction
 Name:		expect
 Epoch:		1
-Version:	5.45.4
+Version:	5.45.4.1
 Release:	1
 Group:		System/Libraries
 License:	BSD
 Url:		https://expect.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/project/expect/Expect/%{version}/%{name}%{version}.tar.gz
+#Source0:	http://downloads.sourceforge.net/project/expect/Expect/%{version}/%{name}%{version}.tar.gz
+# Upstream is dead-ish, but there seems to be a semi-official fork
+# https://www.tcl3d.org/bawt/download.html
+Source0:	https://www.tcl3d.org/bawt/download/InputLibs/expect-%{version}.7z
 BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
 BuildRequires:	pkgconfig(xscrnsaver)
@@ -47,9 +50,8 @@ expect-5.45-check-telnet.patch
 expect-5.45-passmass-su-full-path.patch
 # Patch104: rhbz 963889, fixes inaccuracy in mkpasswd man page
 expect-5.45-mkpasswd-man.patch
-https://src.fedoraproject.org/rpms/expect/raw/rawhide/f/expect-c99.patch
-https://src.fedoraproject.org/rpms/expect/raw/rawhide/f/expect-configure-c99.patch
-expect-5.45.4-tcl9.patch
+expect-5.45.4.1-compile.patch
+expect-5.45.4.1-fix-mkpasswd.patch
 
 %description
 Expect is a tcl extension for automating interactive applications such
@@ -86,7 +88,7 @@ Group:		System/Libraries
 This package contains example scripts for Expect.
 
 %prep
-%autosetup -p1 -n %{name}%{version}
+%autosetup -p1
 
 autoconf
 autoreconf -fiv

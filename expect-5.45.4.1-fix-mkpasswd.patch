@@ -1,0 +1,15 @@
+diff -up expect-5.45.4.1/example/mkpasswd.omv~ expect-5.45.4.1/example/mkpasswd
+--- expect-5.45.4.1/example/mkpasswd.omv~	2025-03-14 03:44:05.605539461 +0100
++++ expect-5.45.4.1/example/mkpasswd	2025-03-14 03:44:58.307183472 +0100
+@@ -1,7 +1,10 @@
+ #!/bin/sh
+ # -*- tcl -*-
++# Parsing the content of /dev/urandom as UTF-8 is a stupid idea, so
++# make sure we're in an ASCII locale first.
++#
+ # The next line is executed by /bin/sh, but not tcl \
+-exec tclsh "$0" ${1+"$@"}
++LC_ALL=C exec tclsh "$0" ${1+"$@"}
+ 
+ package require Expect
+ 
