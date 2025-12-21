@@ -21,6 +21,11 @@ Url:		https://expect.sourceforge.net/
 # https://www.tcl3d.org/bawt/download.html
 Source0:	https://www.tcl3d.org/bawt/download/InputLibs/expect-%{version}.7z
 # Just for unpacking the source
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	7zip
 BuildRequires:	pkgconfig(tcl)
 BuildRequires:	pkgconfig(tk)
